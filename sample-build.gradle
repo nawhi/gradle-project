@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.3.1'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        exceptionFormat = 'full'
+        events = ["passed", "failed", "skipped"]
+    }
+}

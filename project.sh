@@ -16,13 +16,16 @@ die()
 NAME=$1
 if [ -z "$NAME" ]; then die "Specify a project name"; fi 
 
+VERSION=$2
+if [ -z "$JAVA_VERSION" ]; then JAVA_VERSION="11"; fi
+
 mkdir $NAME
 cd $NAME
 
 echo "# $NAME" > README.md
 
 cat $GITIGNORE_TEMPLATE_FILE > .gitignore
-cat $BUILD_FILE > build.gradle
+sed "s/<<JAVA_VERSION>>/1.$JAVA_VERSION/" $BUILD_FILE > build.gradle
 
 mkdir -p src/main/java src/test/java
 
